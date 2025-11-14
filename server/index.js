@@ -23,6 +23,18 @@ app.get('/health', (req, res) => {
   res.json({ status: 'ok', message: 'Backend server is running' })
 })
 
+// Root endpoint
+app.get('/', (req, res) => {
+  res.json({ 
+    status: 'ok', 
+    message: 'AI Image Generator Backend API',
+    endpoints: {
+      health: 'GET /health',
+      generate: 'POST /api/generate'
+    }
+  })
+})
+
 // Image generation endpoint
 app.post('/api/generate', async (req, res) => {
   try {
@@ -107,7 +119,7 @@ app.post('/api/generate', async (req, res) => {
 })
 
 // Error handling middleware
-app.use((err, req, res) => {
+app.use((err, req, res, next) => {
   console.error('Server error:', err)
   res.status(500).json({
     success: false,

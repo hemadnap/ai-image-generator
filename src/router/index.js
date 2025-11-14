@@ -9,6 +9,12 @@ const routes = [
     meta: { requiresAuth: false },
   },
   {
+    path: '/debug',
+    name: 'Debug',
+    component: () => import('@/pages/Debug.vue'),
+    meta: { requiresAuth: false },
+  },
+  {
     path: '/',
     name: 'Home',
     component: () => import('@/pages/Home.vue'),

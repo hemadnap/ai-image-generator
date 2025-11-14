@@ -194,6 +194,39 @@ class ReplicateService {
     return ratios[aspectRatio] || ratios['1:1']
   }
 
+  async getAvailableModels() {
+    try {
+      // This would typically fetch from Replicate's model list
+      const models = [
+        {
+          id: 'black-forest-labs/flux-kontext-pro',
+          name: 'FLUX Kontext Pro',
+          description:
+            'Advanced context-aware image generation with superior quality',
+        },
+        {
+          id: 'stability-ai/stable-diffusion-xl-base-1.0',
+          name: 'Stable Diffusion XL',
+          description:
+            'High-quality image generation with excellent prompt following',
+        },
+        {
+          id: 'black-forest-labs/flux-schnell',
+          name: 'FLUX Schnell',
+          description: 'Fast, high-quality image generation',
+        },
+      ]
+      return models
+    } catch (error) {
+      // Log error in development only
+      if (import.meta.env.DEV) {
+        // eslint-disable-next-line no-console
+        console.warn('Failed to fetch models:', error)
+      }
+      return []
+    }
+  }
+
   handleError(error) {
     const message = error.message?.toLowerCase() || ''
 
@@ -222,40 +255,6 @@ class ReplicateService {
     }
 
     return error.message || 'An unexpected error occurred. Please try again.'
-  }
-
-  // eslint-disable-next-line no-unreachable
-  // Method to get available models
-  async getAvailableModels() {
-    try {
-      // This would typically fetch from Replicate's model list
-      return [
-        {
-          id: 'black-forest-labs/flux-kontext-pro',
-          name: 'FLUX Kontext Pro',
-          description:
-            'Advanced context-aware image generation with superior quality',
-        },
-        {
-          id: 'stability-ai/stable-diffusion-xl-base-1.0',
-          name: 'Stable Diffusion XL',
-          description:
-            'High-quality image generation with excellent prompt following',
-        },
-        {
-          id: 'black-forest-labs/flux-schnell',
-          name: 'FLUX Schnell',
-          description: 'Fast, high-quality image generation',
-        },
-      ]
-    } catch (error) {
-      // Log error in development only
-      if (import.meta.env.DEV) {
-        // eslint-disable-next-line no-console
-        console.warn('Failed to fetch models:', error)
-      }
-      return []
-    }
   }
 }
 

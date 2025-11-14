@@ -1,0 +1,142 @@
+ai-image-generator/
+│
+├── 📦 PROJECT FILES
+│   ├── package.json                 # Dependencies and scripts
+│   ├── vite.config.js               # Vite configuration
+│   ├── tailwind.config.js           # Tailwind CSS configuration
+│   ├── postcss.config.js            # PostCSS configuration
+│   ├── index.html                   # HTML entry point
+│   ├── .eslintrc.json               # ESLint configuration
+│   ├── .prettierrc                  # Prettier configuration
+│   ├── .env.example                 # Environment variables template
+│   ├── .gitignore                   # Git ignore rules
+│   └── README.md                    # Main documentation
+│
+├── 📂 public/
+│   └── vite.svg                     # Favicon
+│
+├── 📂 src/
+│   ├── 📂 components/
+│   │   └── ImageGenerator.vue       # Main UI component
+│   │
+│   ├── 📂 composables/
+│   │   └── useImageGeneration.js    # Vue composable for image generation
+│   │
+│   ├── 📂 services/
+│   │   ├── replicate.js             # Replicate API service (UPDATED ✨)
+│   │   ├── replicate-config.js      # Model version config (NEW ✨)
+│   │   └── http.js                  # Axios HTTP client
+│   │
+│   ├── 📂 styles/
+│   │   ├── main.scss                # Main stylesheet
+│   │   └── variables.scss           # SCSS variables
+│   │
+│   ├── App.vue                      # Root component
+│   └── main.js                      # Application entry point
+│
+├── 📂 scripts/
+│   └── get-model-versions.sh        # Helper script to fetch version IDs
+│
+├── 📚 DOCUMENTATION FILES
+│   ├── ERROR_RESOLUTION_SUMMARY.txt # Visual summary of the fix
+│   ├── SETUP_COMPLETE.md            # Setup completion guide
+│   ├── GUIDE_REPLICATE_SETUP.md     # Complete setup guide
+│   ├── REPLICATE_SETUP.md           # Quick reference
+│   ├── API_ERROR_FIX.md             # Technical explanation
+│   ├── TEST_SETUP.md                # Testing guide
+│   └── PROJECT_STRUCTURE.txt        # This file
+│
+└── 🔧 CONFIGURATION FILES
+    ├── .env                         # Environment variables (DO NOT COMMIT)
+    └── .env.example                 # Template for .env
+
+
+📝 KEY FILES EXPLAINED
+═══════════════════════════════════════════════════════════════════════════
+
+1. CORE APPLICATION
+   ├── App.vue                       # Header, footer, main layout
+   ├── components/ImageGenerator.vue # Image generation UI
+   └── main.js                       # App initialization
+
+2. BUSINESS LOGIC
+   ├── services/replicate.js         # API calls to Replicate
+   ├── services/replicate-config.js  # Model configuration ⭐ KEY FILE
+   ├── services/http.js              # HTTP client with interceptors
+   └── composables/useImageGeneration.js # State management
+
+3. STYLING
+   ├── styles/main.scss              # Global styles & Tailwind imports
+   └── styles/variables.scss         # Design tokens & variables
+
+4. BUILD & CONFIG
+   ├── vite.config.js                # Bundler configuration
+   ├── tailwind.config.js            # Utility CSS configuration
+   ├── postcss.config.js             # CSS processing
+   ├── package.json                  # Dependencies
+   └── index.html                    # HTML template
+
+
+🎯 WHERE TO MAKE CHANGES
+═══════════════════════════════════════════════════════════════════════════
+
+TO FIX THE API ERROR:
+   👉 Edit: src/services/replicate-config.js
+   Task: Replace placeholder version IDs with real ones from Replicate
+
+TO ADD NEW MODELS:
+   1. Get the model name from Replicate
+   2. Add to MODEL_VERSIONS in replicate-config.js
+   3. Add to models array in ImageGenerator.vue
+
+TO CHANGE STYLING:
+   1. Global styles → src/styles/main.scss
+   2. Variables → src/styles/variables.scss
+   3. Tailwind config → tailwind.config.js
+   4. Component styles → [Component].vue <style> section
+
+TO UPDATE UI:
+   1. Layout → App.vue
+   2. Image gen form → components/ImageGenerator.vue
+   3. Add new components → components/[NewComponent].vue
+
+TO CHANGE API BEHAVIOR:
+   1. HTTP client → services/http.js
+   2. Replicate logic → services/replicate.js
+   3. State management → composables/useImageGeneration.js
+
+
+📊 DEPENDENCY STRUCTURE
+═══════════════════════════════════════════════════════════════════════════
+
+Components use Composables:
+   ImageGenerator.vue → useImageGeneration.js
+
+Composables use Services:
+   useImageGeneration.js → replicate.js
+
+Services use Config:
+   replicate.js → replicate-config.js ⭐ KEY DEPENDENCY
+   replicate.js → http.js
+
+Services use Libraries:
+   replicate.js → "replicate" package
+   http.js → "axios" package
+
+App imports CSS:
+   main.js → styles/main.scss → tailwindcss
+
+
+✨ NEXT STEPS
+═══════════════════════════════════════════════════════════════════════════
+
+1. Get your Replicate API token
+2. Get model version IDs from https://replicate.com/explore
+3. Update src/services/replicate-config.js
+4. Run: npm install
+5. Run: npm run dev
+6. Test the application
+
+For detailed instructions, see:
+→ SETUP_COMPLETE.md
+→ GUIDE_REPLICATE_SETUP.md

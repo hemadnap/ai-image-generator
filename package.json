@@ -1,0 +1,35 @@
+{
+  "name": "ai-image-generator",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Vue 3 + Vite application for generating AI images using Replicate API with Google authentication",
+  "scripts": {
+    "dev": "vite",
+    "dev:backend": "node server/index.js",
+    "dev:all": "npm run dev:backend & npm run dev",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
+  },
+  "dependencies": {
+    "vue": "^3.3.14",
+    "vue-router": "^4.3.3",
+    "pinia": "^2.1.7",
+    "@react-oauth/google": "^0.12.1",
+    "jwt-decode": "^4.0.0",
+    "axios": "^1.6.8"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.4",
+    "vite": "^5.0.13",
+    "tailwindcss": "^3.4.1",
+    "postcss": "^8.4.32",
+    "autoprefixer": "^10.4.17",
+    "sass": "^1.70.0",
+    "eslint": "^8.55.0",
+    "eslint-plugin-vue": "^9.19.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

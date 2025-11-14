@@ -1,0 +1,212 @@
+# AI Image Generator - Project Context
+
+## Overview
+Vue 3 + Vite frontend application for generating AI images using Replicate API with Google Sign-In authentication.
+
+## Tech Stack
+- **Frontend**: Vue 3, Vite, Vue Router, Pinia (state management), Tailwind CSS
+- **Backend**: Node.js, Express.js
+- **Authentication**: Google Sign-In (OAuth 2.0)
+- **API**: Replicate AI for image generation
+- **Styling**: Tailwind CSS + SCSS
+- **Build**: Vite
+
+## Project Structure
+```
+/Users/tcsntcsn/TCSN/ai-image-generator/
+├── index.html                 # HTML entry point
+├── vite.config.js            # Vite configuration (port 3000)
+├── postcss.config.js         # PostCSS config for Tailwind
+├── tailwind.config.js        # Tailwind CSS configuration
+├── eslint.config.js          # ESLint configuration
+├── package.json              # Frontend dependencies
+├── .env                      # Environment variables (secrets removed)
+├── .gitignore               # Git ignore rules
+├── .claude                  # This file
+│
+├── server/
+│   ├── index.js            # Express backend server (port 8000)
+│   ├── package.json        # Backend dependencies
+│   └── package-lock.json
+│
+└── src/
+    ├── main.js             # Vue app entry point
+    ├── App.vue             # Root component with routing
+    ├── router/
+    │   └── index.js       # Vue Router configuration
+    ├── stores/
+    │   └── authStore.js   # Pinia auth store
+    ├── services/
+    │   ├── http.js        # Axios HTTP client
+    │   └── replicate.js   # Replicate API service
+    ├── composables/
+    │   └── useImageGeneration.js # Image generation composable
+    ├── components/
+    │   ├── ImageGenerator.vue      # Main component
+    │   └── ImageGenerationForm.vue # Form component
+    ├── pages/
+    │   ├── Login.vue      # Login page (Google Sign-In)
+    │   ├── Home.vue       # Main page (image generator)
+    │   ├── Gallery.vue    # Gallery page
+    │   └── NotFound.vue   # 404 page
+    └── styles/
+        ├── main.scss      # Global styles
+        └── variables.scss # SCSS variables
+```
+
+## Running the Application
+
+### Start Frontend (Port 3000)
+```bash
+npm run dev
+```
+
+### Start Backend (Port 8000)
+```bash
+npm run dev:backend
+```
+
+### Start Both Simultaneously
+```bash
+npm run dev:all
+```
+
+## Current Ports
+- **Frontend**: http://localhost:3000
+- **Backend**: http://localhost:8000
+- **Backend Health Check**: http://localhost:8000/health
+
+## Environment Configuration
+File: `.env`
+```
+VITE_API_BASE_URL=http://localhost:8000
+VITE_GOOGLE_CLIENT_ID=<to-be-set-by-user>
+```
+
+## Build Commands
+```bash
+npm run build       # Build frontend
+npm run preview     # Preview production build
+npm run lint        # Run ESLint and fix issues
+```
+
+## Security Status
+✅ **All secrets removed from:**
+- Source code
+- Git history
+- .env file (replaced with placeholders)
+- Documentation
+
+## Frontend Configuration
+- **Vite Port**: 3000 (configured in vite.config.js)
+- **Vite strictPort**: false (uses next available port if 3000 taken)
+- **Base URL**: http://localhost:3000
+
+## Backend Configuration
+- **Express Port**: 8000
+- **Health Endpoint**: GET /health
+
+## Key Features Implemented
+1. ✅ Vue 3 app structure with routing
+2. ✅ Pinia state management (authStore)
+3. ✅ Google Sign-In integration
+4. ✅ Image generation form with options (model, style, aspect ratio)
+5. ✅ Image gallery display
+6. ✅ Download functionality
+7. ✅ Authentication guards
+8. ✅ Tailwind CSS styling
+9. ✅ Responsive design
+10. ✅ Backend API integration
+
+## Dependencies Installed
+
+### Frontend (package.json)
+- vue@^3.3.14
+- vue-router@^4.3.3
+- pinia@^2.1.7
+- axios@^1.6.8
+- jwt-decode@^4.0.0
+- @react-oauth/google@^0.12.1
+- vite@^5.0.13
+- @vitejs/plugin-vue@^5.0.4
+- tailwindcss@^3.4.1
+- postcss@^8.4.32
+- autoprefixer@^10.4.17
+- sass@^1.70.0
+- eslint@^8.55.0
+- eslint-plugin-vue@^9.19.2
+
+### Backend (server/package.json)
+- express@^4.18.2
+- cors@^2.8.5
+- dotenv@^16.3.1
+
+## Recent Changes (Session Log)
+1. ✅ Removed all exposed secrets from code and git history
+2. ✅ Recreated all missing config files (vite, eslint, tailwind, etc.)
+3. ✅ Reinstalled npm dependencies in root and /server
+4. ✅ Fixed ESLint errors
+5. ✅ Resolved port conflicts (8000, 3000, 3001)
+6. ✅ Fixed vite.config.js port configuration
+7. ✅ Created/verified index.html
+8. ✅ Recreated src/main.js and src/App.vue
+9. ✅ Updated src/styles/main.scss to use @tailwind directives
+10. ✅ Verified both frontend and backend servers running on correct ports
+11. ✅ Tested frontend HTML loading at http://localhost:3000
+12. ✅ Tested backend health endpoint at http://localhost:8000/health
+
+## Verification Status
+- ✅ Frontend: Running on port 3000
+- ✅ Backend: Running on port 8000
+- ✅ HTML loads correctly
+- ✅ Environment configured
+- ✅ Dependencies installed
+- ✅ No secrets in code/git
+
+## Next Steps for Development
+1. Test Google Sign-In functionality in browser
+2. Test image generation flow
+3. Verify routing works (Login → Home → Gallery)
+4. Test download functionality
+5. Implement error handling improvements
+6. Add loading states
+7. Test on different browsers/devices
+8. Deploy to production when ready
+
+## Notes for Future Development
+- Replace VITE_GOOGLE_CLIENT_ID with actual Google OAuth credentials
+- Configure REPLICATE_API_TOKEN on backend (not in frontend)
+- Add database for user sessions/saved images
+- Implement image storage/caching
+- Add user profile management
+- Consider adding dark mode
+- Add unit tests
+- Set up CI/CD pipeline
+
+## Google OAuth Configuration
+
+### Error: "Authorization Error - Error 401: invalid_client"
+This error occurs when VITE_GOOGLE_CLIENT_ID is not properly configured.
+
+**Solution:**
+1. Follow guide: `GOOGLE_AUTH_SETUP.md`
+2. Get Client ID from Google Cloud Console
+3. Update .env: `VITE_GOOGLE_CLIENT_ID=YOUR_CLIENT_ID.apps.googleusercontent.com`
+4. Restart dev server: `npm run dev`
+
+### Debug Page
+- URL: http://localhost:3000/debug
+- Check all configuration status
+- Verify Google Script, API Base URL, and Backend are ready
+
+### Files Added
+- `GOOGLE_AUTH_SETUP.md` - Complete setup guide
+- `src/pages/Debug.vue` - Configuration checker page
+- Updated `src/router/index.js` - Added /debug route
+- Enhanced `src/pages/Login.vue` - Better error messages
+
+## File Sizes & Import Paths
+- All imports use '@' alias pointing to src/
+- Components use Vue 3 Composition API
+- Stores use Pinia with setup function pattern
+- Services use Axios for HTTP requests

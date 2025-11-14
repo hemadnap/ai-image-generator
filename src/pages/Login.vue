@@ -98,8 +98,16 @@ onMounted(() => {
 
 const initializeGoogleSignIn = () => {
   try {
+    const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID
+
+    if (!clientId || clientId === 'your_google_client_id_here') {
+      error.value =
+        'Google Client ID not configured. Please add VITE_GOOGLE_CLIENT_ID to your .env file.'
+      return
+    }
+
     window.google.accounts.id.initialize({
-      client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID || '',
+      client_id: clientId,
       callback: handleCredentialResponse,
       auto_select: false,
     })

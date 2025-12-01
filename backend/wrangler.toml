@@ -1,0 +1,68 @@
+name = "image_generator_api"
+main = "src/index.ts"
+compatibility_date = "2024-12-16"
+
+# Local development server port
+dev = { ip = "127.0.0.1", port = 8787 }
+
+# Compatibility flags
+compatibility_flags = ["nodejs_compat"]
+
+# Default environment variables (used when no environment is specified)
+vars = { API_VERSION = "v1", ENVIRONMENT = "production", GOOGLE_CLIENT_ID = "66286687898-a8ncf1ngq8rn63nv3o52145keeknmr4n.apps.googleusercontent.com", GOOGLE_CLIENT_SECRET = "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", JWT_SECRET = "your-super-secret-jwt-key-please-change-in-production", CORS_ORIGIN = "http://localhost:3000,https://image_generator_api.tcsn.workers.dev", IMAGE_GENERATOR_URL = "https://image_generator_api.tcsn.workers.dev/images" }
+
+# KV Namespace bindings (for data storage)
+kv_namespaces = [
+  { binding = "USERS_KV", id = "08865d2d9df249e3b75c7e8d70c6844e" },
+  { binding = "SESSIONS_KV", id = "3ff61edd595d4462918f7475cf362b02" }
+]
+
+# D1 Database binding
+d1_databases = [
+  { binding = "DB", database_name = "image_generator", database_id = "78483b7b-7daf-4b5e-9760-7de74b097696" }
+]
+
+# R2 Bucket binding
+r2_buckets = [
+  { binding = "IMAGE_GENERATOR", bucket_name = "image-generator" }
+]
+
+# Environment-specific configurations
+[env.development]
+vars = { API_VERSION = "v1", ENVIRONMENT = "development", GOOGLE_CLIENT_ID = "66286687898-a8ncf1ngq8rn63nv3o52145keeknmr4n.apps.googleusercontent.com", GOOGLE_CLIENT_SECRET = "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", JWT_SECRET = "your-super-secret-jwt-key-please-change-in-production", CORS_ORIGIN = "http://localhost:3000,http://localhost:3001,http://localhost:8787", IMAGE_GENERATOR_URL = "http://localhost:8787/images" }
+kv_namespaces = [
+  { binding = "USERS_KV", id = "08865d2d9df249e3b75c7e8d70c6844e" },
+  { binding = "SESSIONS_KV", id = "3ff61edd595d4462918f7475cf362b02" }
+]
+d1_databases = [
+  { binding = "DB", database_name = "image_generator", database_id = "78483b7b-7daf-4b5e-9760-7de74b097696" }
+]
+r2_buckets = [
+  { binding = "IMAGE_GENERATOR", bucket_name = "image-generator", jurisdiction = "eu" }
+]
+
+[env.staging]
+vars = { API_VERSION = "v1", ENVIRONMENT = "staging", IMAGE_GENERATOR_URL = "https://staging-images.yourdomain.com" }
+d1_databases = [
+  { binding = "DB", database_name = "image_generator_staging", database_id = "your-staging-database-id" }
+]
+r2_buckets = [
+  { binding = "IMAGE_GENERATOR", bucket_name = "image-generator-staging" }
+]
+
+[env.production]
+vars = { API_VERSION = "v1", ENVIRONMENT = "production", IMAGE_GENERATOR_URL = "https://images.yourdomain.com" }
+d1_databases = [
+  { binding = "DB", database_name = "image_generator_prod", database_id = "your-production-database-id" }
+]
+r2_buckets = [
+  { binding = "IMAGE_GENERATOR", bucket_name = "image-generator-prod" }
+]
+
+# Routes configuration
+routes = [
+  { pattern = "example.com/api/*", zone_id = "your-zone-id" }
+]
+
+
+
